@@ -6,16 +6,23 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
+  // global key to be passed to the formstate to get access to the form state 
+  // think of it as a referrence of the formstate (since Form is StatefulWidget) 
+  final formKey = GlobalKey<FormState>();
+
   @override
   Widget build(context) {
     return Container(
       margin: EdgeInsets.all(20.0),
       child: Form(
+        key: this.formKey,
         child: Column(
           children: <Widget>[
-            emailField(), 
-            passwordField(), 
-            Container(margin: EdgeInsets.only(top: 20.0),),
+            emailField(),
+            passwordField(),
+            Container(
+              margin: EdgeInsets.only(top: 20.0),
+            ),
             submitButton(),
           ],
         ),
