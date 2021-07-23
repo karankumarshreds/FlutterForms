@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
-  createState() => LoginScreenState();
+  createState() => LoginScreenState(); 
 }
 
 class LoginScreenState extends State<LoginScreen> {
@@ -27,7 +27,15 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   Widget emailField() {
-    return Text('Button');
+    return TextFormField(
+      decoration: const InputDecoration(
+        labelText: 'Email',
+        hintText: 'user@email.com',
+      ),
+      // this will give [@] suggestion button to the user while typing on the 
+      // mobile keyboard so that user doesn't have to search for the [@] symbol
+      keyboardType: TextInputType.emailAddress,
+    );
   }
 
   Widget passwordField() {
