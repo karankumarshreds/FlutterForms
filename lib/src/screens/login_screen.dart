@@ -12,7 +12,12 @@ class LoginScreenState extends State<LoginScreen> {
       margin: EdgeInsets.all(20.0),
       child: Form(
         child: Column(
-          children: <Widget>[emailField(), passwordField(), submitButton()],
+          children: <Widget>[
+            emailField(), 
+            passwordField(), 
+            Container(margin: EdgeInsets.only(top: 20.0),),
+            submitButton(),
+          ],
         ),
       ),
     );
@@ -41,8 +46,10 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   Widget submitButton() {
-    return ElevatedButton(
+    return MaterialButton(
       onPressed: () {},
+      color: Colors.blueAccent,
+      textColor: Colors.white,
       child: Text('Login!'),
     );
   }
