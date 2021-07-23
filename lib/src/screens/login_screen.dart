@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
-  createState() => LoginScreenState(); 
+  createState() => LoginScreenState();
 }
 
 class LoginScreenState extends State<LoginScreen> {
@@ -12,11 +12,7 @@ class LoginScreenState extends State<LoginScreen> {
       margin: EdgeInsets.all(20.0),
       child: Form(
         child: Column(
-          children: <Widget>[
-            emailField(),
-            passwordField(),
-            submitButton()
-          ],
+          children: <Widget>[emailField(), passwordField(), submitButton()],
         ),
       ),
     );
@@ -32,13 +28,20 @@ class LoginScreenState extends State<LoginScreen> {
         labelText: 'Email',
         hintText: 'user@email.com',
       ),
-      // this will give [@] suggestion button to the user while typing on the 
+      // this will give [@] suggestion button to the user while typing on the
       // mobile keyboard so that user doesn't have to search for the [@] symbol
       keyboardType: TextInputType.emailAddress,
     );
   }
 
   Widget passwordField() {
-    return Text('Button');
+    return TextFormField(
+      // to show the security dots instead of the plain text on the input field
+      obscureText: true,
+      decoration: const InputDecoration(
+        labelText: 'Password',
+      ),
+
+    );
   }
 }
