@@ -13,10 +13,24 @@ class LoginScreenState extends State<LoginScreen> {
       child: Form(
         child: Column(
           children: <Widget>[
-
+            emailField(),
+            passwordField(),
+            submitButton()
           ],
-        )
+        ),
       ),
     );
+  }
+
+  Widget submitButton() {
+    return Text('Button');
+  }
+
+  Widget emailField() {
+    return Text('Button');
+  }
+
+  Widget passwordField() {
+    return Text('Button');
   }
 }
