@@ -6,8 +6,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
-  // global key to be passed to the formstate to get access to the form state 
-  // think of it as a referrence of the formstate (since Form is StatefulWidget) 
+  // global key to be passed to the formstate to get access to the form state
+  // think of it as a referrence of the formstate (since Form is StatefulWidget)
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -54,7 +54,12 @@ class LoginScreenState extends State<LoginScreen> {
 
   Widget submitButton() {
     return MaterialButton(
-      onPressed: () {},
+      onPressed: () {
+        var formState = this.formKey.currentState;
+        if (formState != null) {
+          formState.reset();
+        }
+      },
       color: Colors.blueAccent,
       textColor: Colors.white,
       child: Text('Login!'),
