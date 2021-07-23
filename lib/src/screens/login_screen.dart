@@ -18,10 +18,6 @@ class LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Widget submitButton() {
-    return Text('Button');
-  }
-
   Widget emailField() {
     return TextFormField(
       decoration: const InputDecoration(
@@ -41,7 +37,13 @@ class LoginScreenState extends State<LoginScreen> {
       decoration: const InputDecoration(
         labelText: 'Password',
       ),
+    );
+  }
 
+  Widget submitButton() {
+    return ElevatedButton(
+      onPressed: () {},
+      child: Text('Login!'),
     );
   }
 }
