@@ -39,11 +39,11 @@ class LoginScreenState extends State<LoginScreen> {
       // this will give [@] suggestion button to the user while typing on the
       // mobile keyboard so that user doesn't have to search for the [@] symbol
       keyboardType: TextInputType.emailAddress,
-      validator: (state) {
-        if (state != null && state.length > 5) {
-          return null; // null means no error
+      validator: (String? state) {
+        if (state != null && !state.contains('@')) {
+          return 'Email address must be valid';
         } else {
-          return 'Damn you forgot to put an email address';
+          return null; // null means no error
         }
       },
     );
@@ -51,12 +51,17 @@ class LoginScreenState extends State<LoginScreen> {
 
   Widget passwordField() {
     return TextFormField(
-      // to show the security dots instead of the plain text on the input field
-      obscureText: true,
-      decoration: const InputDecoration(
-        labelText: 'Password',
-      ),
-    );
+        // to show the security dots instead of the plain text on the input field
+        obscureText: true,
+        decoration: const InputDecoration(
+          labelText: 'Password',
+        ),
+        validator: (String? state) {
+          if (state != null && state.length < 4) {
+            return 'Password must be at least 4 characters';
+          } else
+            return null;
+        });
   }
 
   Widget submitButton() {
