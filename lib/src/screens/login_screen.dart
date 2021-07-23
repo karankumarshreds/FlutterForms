@@ -39,6 +39,13 @@ class LoginScreenState extends State<LoginScreen> {
       // this will give [@] suggestion button to the user while typing on the
       // mobile keyboard so that user doesn't have to search for the [@] symbol
       keyboardType: TextInputType.emailAddress,
+      validator: (state) {
+        if (state != null && state.length > 5) {
+          return null; // null means no error
+        } else {
+          return 'Damn you forgot to put an email address';
+        }
+      },
     );
   }
 
@@ -57,7 +64,8 @@ class LoginScreenState extends State<LoginScreen> {
       onPressed: () {
         var formState = this.formKey.currentState;
         if (formState != null) {
-          formState.reset();
+          // this will run all the validator callbacks of each of form children widgets
+          formState.validate();
         }
       },
       color: Colors.blueAccent,
