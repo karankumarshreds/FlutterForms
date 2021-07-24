@@ -10,6 +10,9 @@ class LoginScreenState extends State<LoginScreen> {
   // think of it as a referrence of the formstate (since Form is StatefulWidget)
   final formKey = GlobalKey<FormState>();
 
+  String email = '';
+  String password = '';
+
   @override
   Widget build(context) {
     return Container(
@@ -46,25 +49,33 @@ class LoginScreenState extends State<LoginScreen> {
           return null; // null means no error
         }
       },
-      onSaved: (state) {
-        print(state);
+      onSaved: (String? state) {
+        if (state != null) {
+          email = state;
+        }
       },
     );
   }
 
   Widget passwordField() {
     return TextFormField(
-        // to show the security dots instead of the plain text on the input field
-        obscureText: true,
-        decoration: const InputDecoration(
-          labelText: 'Password',
-        ),
-        validator: (String? state) {
-          if (state != null && state.length < 4) {
-            return 'Password must be at least 4 characters';
-          } else
-            return null;
-        });
+      // to show the security dots instead of the plain text on the input field
+      obscureText: true,
+      decoration: const InputDecoration(
+        labelText: 'Password',
+      ),
+      validator: (String? state) {
+        if (state != null && state.length < 4) {
+          return 'Password must be at least 4 characters';
+        } else
+          return null;
+      },
+      onSaved: (String? state) {
+        if (state != null) {
+          password = state;
+        }
+      },
+    );
   }
 
   Widget submitButton() {
