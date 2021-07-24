@@ -46,6 +46,9 @@ class LoginScreenState extends State<LoginScreen> {
           return null; // null means no error
         }
       },
+      onSaved: (state) {
+        print(state);
+      },
     );
   }
 
@@ -70,7 +73,10 @@ class LoginScreenState extends State<LoginScreen> {
         var formState = this.formKey.currentState;
         if (formState != null) {
           // this will run all the validator callbacks of each of form children widgets
-          formState.validate();
+          if (formState.validate()) {
+            // to extract the value of all the nested widgets of the form widget
+            formState.save();
+          }
         }
       },
       color: Colors.blueAccent,
