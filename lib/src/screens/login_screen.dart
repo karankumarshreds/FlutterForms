@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../mixins/validation_mixin.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -43,11 +44,7 @@ class LoginScreenState extends State<LoginScreen> {
       // mobile keyboard so that user doesn't have to search for the [@] symbol
       keyboardType: TextInputType.emailAddress,
       validator: (String? state) {
-        if (state != null && !state.contains('@')) {
-          return 'Email address must be valid';
-        } else {
-          return null; // null means no error
-        }
+        validationMixin().validateEmail(state);
       },
       onSaved: (String? state) {
         if (state != null) {
@@ -65,10 +62,7 @@ class LoginScreenState extends State<LoginScreen> {
         labelText: 'Password',
       ),
       validator: (String? state) {
-        if (state != null && state.length < 4) {
-          return 'Password must be at least 4 characters';
-        } else
-          return null;
+        validationMixin().validatePassword(state);
       },
       onSaved: (String? state) {
         if (state != null) {
@@ -85,8 +79,9 @@ class LoginScreenState extends State<LoginScreen> {
         if (formState != null) {
           // this will run all the validator callbacks of each of form children widgets
           if (formState.validate()) {
-            // to extract the value of all the nested widgets of the form widget
+            // to invoke all the onSaved Callbacks on each of the Form children widgets
             formState.save();
+            print(email + password);
           }
         }
       },
